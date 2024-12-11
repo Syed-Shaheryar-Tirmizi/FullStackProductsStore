@@ -9,6 +9,7 @@ builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddCors();
 
 builder.Services.AddDbContext<ProductContext>(opt =>
 {
@@ -24,6 +25,9 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseCors(opt =>{
+    opt.AllowAnyHeader().AllowAnyHeader().WithOrigins("http://localhost:3000");
+});
 app.UseRouting();
 app.MapControllers();
 
