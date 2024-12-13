@@ -9,10 +9,10 @@ interface props {
 export default function ProductList({ products }: props) {
     return (
         <>
-            <Grid2 container spacing = {4}>
+            <Grid2 container spacing={4}>
                 {products.map((product) => (
                     <Grid2 size={3} key={product.id} >
-                    <ProdcutCard item={product}></ProdcutCard>
+                    <ProdcutCard product={product}></ProdcutCard>
                     </Grid2>
                 )
                 )}

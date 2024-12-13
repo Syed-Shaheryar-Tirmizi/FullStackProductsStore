@@ -1,31 +1,44 @@
-import { Button, Card, CardActions, CardContent, CardMedia, Typography } from "@mui/material";
+import { Avatar, Button, Card, CardActions, CardContent, CardHeader, CardMedia, Typography } from "@mui/material";
 import { Product } from "../../app/models/Product";
+import { Link } from "react-router-dom";
 
 interface props {
-    item: Product
+    product: Product
 }
 
-export default function ProdcutCard({ item }: props) {
+export default function ProdcutCard({ product }: props) {
     return (
         <>
-            <Card>
-                <CardMedia
-                    sx={{ height: 140 }}
-                    image="http://picsum.photos/200"
-                    title="green iguana"
+            <Card sx={{display:"flex", flexDirection: 'column', height: '100%'}}>
+                <CardHeader
+                    avatar={
+                        <Avatar sx={{bgcolor: "secondary.main"}}>
+                            {product.name.charAt(0).toUpperCase()}
+                        </Avatar>
+                    }
+                    title={
+                        product.name
+                    }
+                    titleTypographyProps={{
+                        sx: {fontWeight: "bold", color: "primary.main"}
+                    }}
                 />
-                <CardContent>
-                    <Typography gutterBottom variant="h5" component="div">
-                        Lizard
+                <CardMedia
+                    sx={{ height: 140, backgroundSize:"contain", bgcolor:"primary.light" }}
+                    image={product.pictureUrl}
+                    title={product.name}
+                />
+                <CardContent sx={{ flexGrow: 1 }}>
+                    <Typography gutterBottom variant="h5" color="secondary">
+                        ${(product.price / 100).toFixed(2)}
                     </Typography>
                     <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-                        Lizards are a widespread group of squamate reptiles, with over 6,000
-                        species, ranging across all continents except Antarctica
+                        {product.brand} / {product.name}
                     </Typography>
                 </CardContent>
                 <CardActions>
-                    <Button size="small">Share</Button>
-                    <Button size="small">Learn More</Button>
+                    <Button size="small">Add to cart</Button>
+                    <Button component={Link} to={`/catalog/${product.id}`} size="small">View</Button>
                 </CardActions>
             </Card>
         </>
