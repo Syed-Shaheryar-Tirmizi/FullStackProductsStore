@@ -18,7 +18,7 @@ namespace API.Extensions
         public static IQueryable<Product> Search(this IQueryable<Product> query, string search)
         {
             if (string.IsNullOrEmpty(search)) return query;
-            return query.Where(x => x.Name.ToLower().Contains(search.ToLower()));
+            return query.Where(x => x.Name.Contains(search, StringComparison.OrdinalIgnoreCase));
         }
 
         public static IQueryable<Product> Filter(this IQueryable<Product> query, string types, string brands)
