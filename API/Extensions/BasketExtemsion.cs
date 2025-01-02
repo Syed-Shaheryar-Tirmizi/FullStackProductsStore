@@ -12,6 +12,8 @@ namespace API.Extensions
             {
                 Id = basket.Id,
                 BuyerId = basket.BuyerId,
+                PaymentIntentId = basket.PaymentIntentId,
+                ClientSecret = basket.ClientSecret,
                 Items = basket.Items.Select(x => new BasketItemDto
                 {
                     ProductId = x.ProductId,
@@ -20,7 +22,7 @@ namespace API.Extensions
                     Price = x.Product.Price,
                     Quantity = x.Quantity,
                     Type = x.Product.Type,
-                    Brand = x.Product.Brand
+                    Brand = x.Product.Brand,
                 }).ToList()
             };
         }

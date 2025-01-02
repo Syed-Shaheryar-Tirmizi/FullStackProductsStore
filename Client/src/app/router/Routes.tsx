@@ -6,11 +6,11 @@ import AboutPage from "../../features/about/AboutPage";
 import ProductDetailsPage from "../../features/catalog/ProductDetailsPage";
 import Catalog from "../../features/catalog/Catalog";
 import BasketPage from "../../features/basket/BasketPage";
-import CheckoutPage from "../../features/checkout/CheckoutPage";
 import LoginPage from "../../features/Account/LoginPage";
 import RegisterPage from "../../features/Account/RegisterPage";
 import RequireAuth from "./RequireAuth";
 import Orders from "../../features/Orders/Orders";
+import CheckoutWrapper from "../../features/checkout/CheckoutWrapper";
 
 export const routes = createBrowserRouter([
     {
@@ -19,7 +19,7 @@ export const routes = createBrowserRouter([
         children: [
             {
                 element: <RequireAuth />, children: [
-                    { path: 'checkout', element: <CheckoutPage /> },
+                    { path: 'checkout', element: <CheckoutWrapper /> },
                     { path: 'orders', element: <Orders /> }
                 ]
             },

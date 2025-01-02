@@ -12,7 +12,7 @@ export default function Orders() {
 
     useEffect(() => {
         dispatch(fetchOrdersAsync());
-    })
+    }, [dispatch]);
 
     if(!ordersLoaded) return <LoadingComponent message="Loading orders..." />
     if(selectedOrder > 0) {
