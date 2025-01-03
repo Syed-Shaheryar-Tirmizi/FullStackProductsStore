@@ -45,7 +45,7 @@ builder.Services.AddCors();
 
 builder.Services.AddDbContext<ProductContext>(opt =>
 {
-    opt.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnectionString"));
+    opt.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnectionString"));
 });
 
 builder.Services.AddIdentityCore<User>(opt =>
@@ -86,12 +86,16 @@ if (app.Environment.IsDevelopment())
     });
 }
 
+app.UseDefaultFiles();
+app.UseStaticFiles();
+
 app.UseCors(opt =>
 {
     opt.AllowAnyHeader().AllowAnyMethod().AllowCredentials().WithOrigins("http://localhost:3000");
 });
 app.UseRouting();
 app.MapControllers();
+app.MapFallbackToController("Index", "Fallback");
 app.UseAuthentication();
 app.UseAuthorization();
 
